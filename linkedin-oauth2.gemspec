@@ -5,12 +5,12 @@ require File.expand_path("../lib/linked_in/version", __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name        = "linkedin-oauth2"
-  gem.email       = ["evan@evanmorikawa.com"]
+  gem.email       = [""]
   gem.version     = LinkedIn::VERSION
-  gem.authors     = ["Evan Morikawa"]
-  gem.summary     = "Ruby wrapper for the LinkedIn OAuth 2.0 API"
+  gem.authors     = [""]
+  gem.summary     = "Ruby wrapper for the LinkedIn OAuth 2.0 API V2"
   gem.license     = "MIT"
-  gem.homepage    = "http://github.com/emorikawa/linkedin-oauth2"
+  gem.homepage    = "http://github.com/ytuauden/linkedin-v2-oauth2"
   gem.description = gem.summary
 
   gem.files         = `git ls-files`.split("\n")
@@ -22,7 +22,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "oauth2",  "~> 1.0"
   gem.add_dependency "hashie",  "~> 3.2"
-  gem.add_dependency "faraday", "~> 0.9"
+  gem.add_dependency "faraday", "~> 1.0"
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec", "~> 3.0"

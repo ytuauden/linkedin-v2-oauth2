@@ -15,71 +15,41 @@ module LinkedIn
     end
 
     extend Forwardable # Composition over inheritance
-    def_delegators :@jobs, :job,
-                           :job_bookmarks,
-                           :job_suggestions,
-                           :add_job_bookmark
+    def_delegators :@comments, :comments,
+                               :comment
 
-    def_delegators :@people, :profile,
-                             :skills,
-                             :connections,
-                             :picture_urls,
-                             :new_connections
+    def_delegators :@images, :images
 
-    def_delegators :@search, :search
+    def_delegators :@posts, :organization_posts,
+                            :posts,
+                            :post
 
-    def_delegators :@groups, :join_group,
-                             :group_posts,
-                             :group_profile,
-                             :add_group_share,
-                             :group_suggestions,
-                             :group_memberships,
-                             :post_group_discussion
+    def_delegators :@social_metadata, :social_metadata
 
-    def_delegators :@companies, :company,
-                                :company_search,
-                                :follow_company,
-                                :company_updates,
-                                :unfollow_company,
-                                :add_company_share,
-                                :company_statistics,
-                                :company_historical_follow_statistics,
-                                :company_historical_status_update_statistics,
-                                :company_updates_likes,
-                                :company_updates_comments
-
-    def_delegators :@communications, :send_message
-
-    def_delegators :@share_and_social_stream, :shares,
-                                              :share,
-                                              :add_share,
-                                              :like_share,
-                                              :share_likes,
-                                              :unlike_share,
-                                              :share_comments,
-                                              :update_comment,
-                                              :network_updates
+    def_delegators :@videos, :videos
 
     private ##############################################################
 
     def initialize_endpoints
-      @jobs = LinkedIn::Jobs.new(@connection)
-      @people = LinkedIn::People.new(@connection)
-      @search = LinkedIn::Search.new(@connection)
-      @groups = LinkedIn::Groups.new(@connection)
-      @companies = LinkedIn::Companies.new(@connection)
-      @communications = LinkedIn::Communications.new(@connection)
-      @share_and_social_stream = LinkedIn::ShareAndSocialStream.new(@connection)
+      @comments = LinkedIn::Comments.new(@connection)
+      @images = LinkedIn::Images.new(@connection)
+      @posts = LinkedIn::Posts.new(@connection)
+      @social_metadata = LinkedIn::SocialMetadata.new(@connection)
+      @videos = LinkedIn::Videos.new(@connection)
     end
 
     def default_params
-      # https//developer.linkedin.com/documents/authentication
-      return {oauth2_access_token: @access_token.token}
+      {}
     end
 
     def default_headers
-      # https://developer.linkedin.com/documents/api-requests-json
-      return {"x-li-format" => "json"}
+      # https://docs.microsoft.com/fr-fr/linkedin/shared/authentication/client-credentials-flow?context=linkedin%2Fcontext&view=li-lms-2022-07#step-3-make-api-requests
+      {
+        'Connection' => 'Keep-Alive',
+        'X-Restli-Protocol-Version' => '2.0.0',
+        'LinkedIn-Version' => '202206',
+        'Authorization' => "Bearer #{@access_token.token}"
+      }
     end
 
     def verify_access_token!(access_token)

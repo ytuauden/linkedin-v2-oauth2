@@ -25,16 +25,17 @@ module LinkedIn
                   :redirect_uri,
                   :authorize_url,
                   :client_secret,
-                  :default_profile_fields
+                  :default_profile_fields,
+                  :refresh_token
 
     alias_method :api_key, :client_id
     alias_method :secret_key, :client_secret
 
     def initialize
       @api = "https://api.linkedin.com"
-      @api_version = "/v1"
+      @api_version = "/v2"
       @site = "https://www.linkedin.com"
-      @token_url = "/uas/oauth2/accessToken"
+      @token_url = "/oauth/v2/accessToken"
       @authorize_url = "/uas/oauth2/authorization"
     end
   end

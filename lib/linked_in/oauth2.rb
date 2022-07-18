@@ -32,15 +32,16 @@ module LinkedIn
     # @param [Hash] options the options to create the client with
     # @option options [Symbol] :token_method (:post) HTTP method to use to
     #   request token (:get or :post)
-    # @option options [Hash] :connection_opts ({}) Hash of connection options 
+    # @option options [Hash] :connection_opts ({}) Hash of connection options
     #   to pass to initialize Faraday with
-    # @option options [FixNum] :max_redirects (5) maximum number of redirects 
+    # @option options [FixNum] :max_redirects (5) maximum number of redirects
     #   to follow
     # @option options [Boolean] :raise_errors (true) whether or not to
     #   raise an error on malformed responses
     # @yield [builder] The Faraday connection builder
     def initialize(client_id=LinkedIn.config.client_id,
                    client_secret=LinkedIn.config.client_secret,
+                   refresh_token=LinkedIn.config.refresh_token,
                    options = {}, &block)
 
       if client_id.is_a? Hash
@@ -134,9 +135,31 @@ module LinkedIn
       raise OAuthError.new(e.response)
     end
 
+    def get_access_token_from_refresh_token
+      connection = LinkedIn::Connection.new(LinkedIn.config.site)
+      response = connection.post(LinkedIn.config.token_url, refresh_token_body)
+
+      if response.status.eql?(200)
+        self.access_token = Mash.from_json(response.body)['access_token']
+      else
+        # TODO handle
+      end
+    rescue ::OAuth2::Error => e
+      raise OAuthError.new(e.response)
+    end
+
 
     private ##############################################################
 
+    def refresh_token_body
+      {
+        'Content-Type' => 'application/x-www-form-urlencoded',
+        'grant_type' => 'refresh_token',
+        'client_id' => LinkedIn.config.client_id,
+        'client_secret' => LinkedIn.config.client_secret,
+        'refresh_token' => LinkedIn.config.refresh_token
+      }
+    end
 
     def default_access_code_options(custom_options={})
       custom_options ||= {}
