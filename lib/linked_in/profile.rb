@@ -6,7 +6,7 @@ module LinkedIn
 
     def current_user
       path = profile_path
-      get(path, options)
+      get(path)
     end
 
     private ##############################################################
