@@ -36,6 +36,7 @@ module LinkedIn
       @comments = LinkedIn::Comments.new(@connection)
       @images = LinkedIn::Images.new(@connection)
       @posts = LinkedIn::Posts.new(@connection)
+      @profile = LinkedIn::Profile.new(@connection)
       @social_metadata = LinkedIn::SocialMetadata.new(@connection)
       @videos = LinkedIn::Videos.new(@connection)
     end
