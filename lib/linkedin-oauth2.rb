@@ -29,6 +29,7 @@ require "linked_in/api_resource"
 require "linked_in/comments"
 require "linked_in/images"
 require "linked_in/posts"
+require "linked_in/profile"
 require "linked_in/social_metadata"
 require "linked_in/videos"
 

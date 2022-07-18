@@ -24,6 +24,8 @@ module LinkedIn
                             :posts,
                             :post
 
+    def_delegators :@profile, :current_user
+
     def_delegators :@social_metadata, :social_metadata
 
     def_delegators :@videos, :videos
