@@ -12,7 +12,7 @@ module LinkedIn
     private ##############################################################
 
     def profile_path
-      "/me"
+      "/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))"
     end
   end
 end
