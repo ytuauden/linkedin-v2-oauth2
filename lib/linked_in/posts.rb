@@ -23,7 +23,7 @@ module LinkedIn
 
     def organization_posts_path(options)
       organization_urn = options.delete(:organization_urn)
-      path = "/posts?author=#{CGI.escape(organization_urn)}&isDsc=false&q=author"
+      path = "/posts?author=#{CGI.escape(id_to_urn(organization_urn))}&isDsc=false&q=author"
 
       paginate(path, options)
     end

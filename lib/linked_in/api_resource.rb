@@ -67,6 +67,10 @@ module LinkedIn
 
     private ##############################################################
 
+    def id_to_urn(id, urn_type)
+      "urn:li:#{urn_type}:#{id}"
+    end
+
     def paginate(path, options)
       paginate_params = options.delete(:paginate)
       if paginate_params && paginate_params.count > 0
