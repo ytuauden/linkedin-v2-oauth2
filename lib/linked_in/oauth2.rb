@@ -10,7 +10,7 @@ module LinkedIn
   # More details on LinkedIn's Authorization process can be found here: https://developer.linkedin.com/documents/authentication
   class OAuth2 < ::OAuth2::Client
 
-    attr_accessor :access_token
+    attr_accessor :client_id, :client_secret, :refresh_token, :access_token
 
     # Instantiate a new OAuth 2.0 client using your client ID (aka API
     # Key) and client secret (aka Secret Key).
@@ -39,10 +39,10 @@ module LinkedIn
     # @option options [Boolean] :raise_errors (true) whether or not to
     #   raise an error on malformed responses
     # @yield [builder] The Faraday connection builder
-    def initialize(client_id=LinkedIn.config.client_id,
-                   client_secret=LinkedIn.config.client_secret,
-                   refresh_token=LinkedIn.config.refresh_token,
-                   options = {}, &block)
+    def initialize(client_id: nil,
+                   client_secret: nil,
+                   refresh_token: nil,
+                   options: nil, &block)
 
       if client_id.is_a? Hash
         options = client_id
@@ -50,6 +50,10 @@ module LinkedIn
       end
 
       options = default_oauth_options(options)
+
+      self.client_id = client_id
+      self.client_secret = client_secret
+      self.refresh_token = refresh_token
 
       super client_id, client_secret, options, &block
 
@@ -148,16 +152,15 @@ module LinkedIn
       raise OAuthError.new(e.response)
     end
 
-
     private ##############################################################
 
     def refresh_token_body
       {
         'Content-Type' => 'application/x-www-form-urlencoded',
         'grant_type' => 'refresh_token',
-        'client_id' => LinkedIn.config.client_id,
-        'client_secret' => LinkedIn.config.client_secret,
-        'refresh_token' => LinkedIn.config.refresh_token
+        'client_id' => client_id,
+        'client_secret' => client_secret,
+        'refresh_token' => refresh_token
       }
     end
 
