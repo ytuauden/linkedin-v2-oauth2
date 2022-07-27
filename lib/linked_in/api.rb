@@ -20,7 +20,8 @@ module LinkedIn
 
     def_delegators :@images, :images
 
-    def_delegators :@posts, :organization_posts,
+    def_delegators :@posts, :posts_by_organization,
+                            :organization_posts,
                             :posts,
                             :post
 

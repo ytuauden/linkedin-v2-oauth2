@@ -76,6 +76,10 @@ module LinkedIn
       end
     end
 
+    def format_fields_list(fields)
+      fields.join(',').delete(' ')
+    end
+
     def build_url_with_urn_list(path, urns)
       path += 'List('
       urns.uniq.each do |urn|

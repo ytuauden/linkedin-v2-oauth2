@@ -17,6 +17,15 @@ require "linked_in/mash"
 # Wraps a LinkedIn-specifc API connection
 # LinkedIn::Connection inherits from Faraday::Connection
 require "faraday"
+
+module Faraday
+  module FlatParamsEncoder
+    def self.escape(arg)
+      arg
+    end
+  end
+end
+
 require "linked_in/connection"
 
 # Data object to wrap API access token
