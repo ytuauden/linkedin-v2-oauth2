@@ -15,11 +15,15 @@ module LinkedIn
     end
 
     extend Forwardable # Composition over inheritance
-    def_delegators :@comments, :comments_on_post,
+    def_delegators :@comments, :create_comment_on_post,
+                               :create_comment_on_comment,
+                               :comments_on_post,
                                :comments_on_comment,
                                :comment
 
     def_delegators :@images, :images
+
+    def_delegators :@organization, :organization
 
     def_delegators :@posts, :posts_by_organization,
                             :organization_posts,
@@ -38,6 +42,7 @@ module LinkedIn
     def initialize_endpoints
       @comments = LinkedIn::Comments.new(@connection)
       @images = LinkedIn::Images.new(@connection)
+      @organization = LinkedIn::Organization.new(@connection)
       @posts = LinkedIn::Posts.new(@connection)
       @profile = LinkedIn::Profile.new(@connection)
       @social_metadata = LinkedIn::SocialMetadata.new(@connection)

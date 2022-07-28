@@ -4,6 +4,16 @@ module LinkedIn
   # @see https://docs.microsoft.com/en-us/linkedin/marketing/integrations/community-management/shares/comments-api?view=li-lms-2022-07
   class Comments < APIResource
 
+    def create_comment_on_post(comment, options)
+      path = comments_on_post_path(options)
+      post(path, comment, options.delete(:headers))
+    end
+
+    def create_comment_on_comment(comment, options)
+      path = comments_on_comment_path(options)
+      post(path, comment, options.delete(:headers))
+    end
+
     def comments_on_post(options = {})
       path = comments_on_post_path(options)
       options['fields'] = options.delete(:fields).join(',')
@@ -24,7 +34,7 @@ module LinkedIn
     private ##############################################################
 
     def comments_on_post_path(options)
-      "/socialActions/#{CGI.escape(options.delete(:entity_urn))}/comments?"
+      "/socialActions/#{CGI.escape(options.delete(:entity_urn))}/comments"
     end
 
     def comments_on_comment_path(options)

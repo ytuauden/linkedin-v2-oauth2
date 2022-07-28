@@ -95,7 +95,7 @@ module LinkedIn
       options = parse_id(id, options)
       path = "#{profile_path(options, false)}/skills"
       get(path, options)
-    end     
+    end
 
 
     protected ############################################################
@@ -145,6 +145,5 @@ module LinkedIn
       t = ::Time.parse(since)
       Time.utc(t.year, t.month, t.day, t.hour, t.min, t.sec).to_i * 1000
     end
-
   end
 end

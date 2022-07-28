@@ -37,6 +37,7 @@ require "linked_in/api_resource"
 # All of the endpoints
 require "linked_in/comments"
 require "linked_in/images"
+require "linked_in/organization"
 require "linked_in/posts"
 require "linked_in/profile"
 require "linked_in/social_metadata"
