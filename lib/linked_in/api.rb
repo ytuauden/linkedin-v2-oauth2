@@ -15,7 +15,8 @@ module LinkedIn
     end
 
     extend Forwardable # Composition over inheritance
-    def_delegators :@comments, :comments,
+    def_delegators :@comments, :comments_on_post,
+                               :comments_on_comment,
                                :comment
 
     def_delegators :@images, :images
@@ -27,7 +28,8 @@ module LinkedIn
 
     def_delegators :@profile, :current_user
 
-    def_delegators :@social_metadata, :social_metadata
+    def_delegators :@social_metadata, :social_metadata,
+                                      :batch_social_metadata
 
     def_delegators :@videos, :videos
 
@@ -50,7 +52,6 @@ module LinkedIn
       # https://docs.microsoft.com/fr-fr/linkedin/shared/authentication/client-credentials-flow?context=linkedin%2Fcontext&view=li-lms-2022-07#step-3-make-api-requests
       {
         'Connection' => 'Keep-Alive',
-        'X-Restli-Protocol-Version' => '2.0.0',
         'LinkedIn-Version' => '202206',
         'Authorization' => "Bearer #{@access_token.token}"
       }

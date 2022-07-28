@@ -4,8 +4,15 @@ module LinkedIn
   # @see https://docs.microsoft.com/en-us/linkedin/marketing/integrations/community-management/shares/comments-api?view=li-lms-2022-07
   class Comments < APIResource
 
-    def comments(options = {})
-      path = comments_path(options)
+    def comments_on_post(options = {})
+      path = comments_on_post_path(options)
+      options['fields'] = options.delete(:fields).join(',')
+      get(path, options)
+    end
+
+    def comments_on_comment(options= {})
+      path = comments_on_comment_path(options)
+      options['fields'] = options.delete(:fields).join(',')
       get(path, options)
     end
 
@@ -16,17 +23,16 @@ module LinkedIn
 
     private ##############################################################
 
-    def comments_path(options)
-      entity_urn = options.delete(:entity_urn)
-      path = "/socialActions/#{CGI.escape(entity_urn)}/comments?"
+    def comments_on_post_path(options)
+      "/socialActions/#{CGI.escape(options.delete(:entity_urn))}/comments?"
+    end
 
-      paginate(path, options)
+    def comments_on_comment_path(options)
+      "/socialActions/#{options.delete(:comment_urn)}/comments"
     end
 
     def comment_path(options)
-      entity_urn = options.delete(:entity_urn)
-      id = options.delete(:id)
-      path = "/socialActions/#{CGI.escape(entity_urn)}/comments/#{CGI.escape(id)}"
+      "/socialActions/#{CGI.escape(options.delete(:entity_urn))}/comments/#{CGI.escape(options.delete(:id))}"
     end
   end
 end

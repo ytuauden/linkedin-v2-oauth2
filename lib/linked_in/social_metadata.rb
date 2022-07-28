@@ -5,22 +5,20 @@ module LinkedIn
   class SocialMetadata < APIResource
 
     def social_metadata(options = {})
-      path = social_metadata_path(options)
+      path = "#{social_metadata_path}/#{CGI.escape(options.delete(:entity_urn))}"
+      get(path, options)
+    end
+
+    def batch_social_metadata(options = {})
+      path = social_metadata_path
+      options['ids'] = "List(#{CGI.escape(options.delete(:entity_urn).join(','))})"
       get(path, options)
     end
 
     private ##############################################################
 
-    def social_metadata_path(options)
-      entity_urn = options.delete(:entity_urn)
-      path = "/socialMetadata"
-      if entity_urn.is_a?(Array)
-        path += "?ids="
-
-        build_url_with_urn_list(path, entity_urn)
-      else
-        path += "/#{CGI.escape(entity_urn)}"
-      end
+    def social_metadata_path
+      '/socialMetadata'
     end
   end
 end
