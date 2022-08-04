@@ -20,7 +20,7 @@ module LinkedIn
       get(path, options)
     end
 
-    def comments_on_comment(options= {})
+    def comments_on_comment(options = {})
       path = comments_on_comment_path(options)
       options['fields'] = options.delete(:fields).join(',')
       get(path, options)

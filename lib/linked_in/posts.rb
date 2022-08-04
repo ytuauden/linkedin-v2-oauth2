@@ -18,6 +18,7 @@ module LinkedIn
 
     def post(options = {})
       path = post_path(options)
+      options['projection'] = "(#{options.delete(:fields).join(',')})"
       get(path, options)
     end
 
@@ -35,8 +36,7 @@ module LinkedIn
     end
 
     def post_path(options)
-      urn = options.delete(:urn)
-      path = "/posts/#{CGI.escape(urn)}"
+      "/ugcPosts/#{CGI.escape(options.delete(:urn))}"
     end
   end
 end
