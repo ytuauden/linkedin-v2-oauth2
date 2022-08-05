@@ -36,7 +36,8 @@ module LinkedIn
     def_delegators :@social_metadata, :social_metadata,
                                       :batch_social_metadata
 
-    def_delegators :@vector_assets, :register_upload
+    def_delegators :@vector_assets, :register_upload,
+                                    :upload_image
 
     def_delegators :@videos, :videos
 

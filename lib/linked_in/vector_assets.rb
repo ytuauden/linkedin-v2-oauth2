@@ -9,6 +9,11 @@ module LinkedIn
       post(path, request, options.delete(:headers))
     end
 
+    def upload_image(options)
+      path = options.delete(:upload_url)
+      put(path, Faraday::UploadIO.new(options.delete(:image_path), options.delete(:content_type)))
+    end
+
     private ##############################################################
 
     def register_upload_path(_options)
