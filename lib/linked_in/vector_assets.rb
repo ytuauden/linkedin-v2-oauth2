@@ -11,7 +11,7 @@ module LinkedIn
 
     def upload_image(options)
       path = options.delete(:upload_url)
-      put(path, file: Faraday::UploadIO.new(options.delete(:image_path), options.delete(:content_type)))
+      put(path, Faraday::UploadIO.new(options.delete(:image_path), options.delete(:content_type)))
     end
 
     private ##############################################################
