@@ -22,8 +22,7 @@ module LinkedIn
                                :comment,
                                :delete_comment
 
-    def_delegators :@images, :images,
-                             :register_upload
+    def_delegators :@images, :images
 
     def_delegators :@organization, :organization
 
@@ -37,6 +36,8 @@ module LinkedIn
     def_delegators :@social_metadata, :social_metadata,
                                       :batch_social_metadata
 
+    def_delegators :@vector_assets, :register_upload
+
     def_delegators :@videos, :videos
 
     private ##############################################################
@@ -48,6 +49,7 @@ module LinkedIn
       @posts = LinkedIn::Posts.new(@connection)
       @profile = LinkedIn::Profile.new(@connection)
       @social_metadata = LinkedIn::SocialMetadata.new(@connection)
+      @vector_assets = LinkedIn::VectorAssets.new(@connection)
       @videos = LinkedIn::Videos.new(@connection)
     end
 
