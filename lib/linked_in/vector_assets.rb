@@ -6,7 +6,7 @@ module LinkedIn
 
     def register_upload(request, options = {})
       path = register_upload_path(options)
-      post(path, request)
+      post(path, request, options.delete(:headers))
     end
 
     private ##############################################################
