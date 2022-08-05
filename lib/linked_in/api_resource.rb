@@ -50,7 +50,9 @@ module LinkedIn
     end
 
     def post(path=nil, body=nil, headers=nil, &block)
-      @connection.post(prepend_prefix(path), body, headers, &block)
+      response = @connection.post(prepend_prefix(path), body, headers, &block)
+
+      return Mash.from_json(response.body)
     end
 
     def put(path=nil, body=nil, headers=nil, &block)
@@ -58,7 +60,9 @@ module LinkedIn
     end
 
     def delete(path=nil, params=nil, headers=nil, &block)
-      @connection.delete(prepend_prefix(path), params, headers, &block)
+      response = @connection.delete(prepend_prefix(path), params, headers, &block)
+
+      return Mash.from_json(response.body)
     end
 
     def deprecated
