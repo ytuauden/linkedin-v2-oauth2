@@ -9,6 +9,11 @@ module LinkedIn
       get(path, options)
     end
 
+    def register_upload(options = {})
+      path = register_upload_path(options)
+      post(path)
+    end
+
     private ##############################################################
 
     def images_path(options)
@@ -21,6 +26,10 @@ module LinkedIn
       else
         path += "/#{CGI.escape(urn)}"
       end
+    end
+
+    def register_upload_path(_options)
+      '/assets?action=registerUpload'
     end
   end
 end
