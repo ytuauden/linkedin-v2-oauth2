@@ -4,9 +4,9 @@ module LinkedIn
   # @see https://docs.microsoft.com/en-us/linkedin/marketing/integrations/community-management/shares/vector-asset-api?view=li-lms-2022-07
   class VectorAssets < APIResource
 
-    def register_upload(options = {})
+    def register_upload(request, options = {})
       path = register_upload_path(options)
-      post(path)
+      post(path, request)
     end
 
     private ##############################################################
