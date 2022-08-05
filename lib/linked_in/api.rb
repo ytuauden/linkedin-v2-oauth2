@@ -19,7 +19,8 @@ module LinkedIn
                                :create_comment_on_comment,
                                :comments_on_post,
                                :comments_on_comment,
-                               :comment
+                               :comment,
+                               :delete_comment
 
     def_delegators :@images, :images
 

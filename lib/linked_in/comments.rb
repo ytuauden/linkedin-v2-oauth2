@@ -31,6 +31,11 @@ module LinkedIn
       get(path, options)
     end
 
+    def delete_comment(options= {})
+      path = delete_comment_path(options)
+      delete(path, options)
+    end
+
     private ##############################################################
 
     def comments_on_post_path(options)
@@ -43,6 +48,10 @@ module LinkedIn
 
     def comment_path(options)
       "/socialActions/#{CGI.escape(options.delete(:entity_urn))}/comments/#{CGI.escape(options.delete(:id))}"
+    end
+
+    def delete_comment_path(options)
+      "/socialActions/#{options.delete(:entity_urn)}/comments/#{options.delete(:id)}"
     end
   end
 end
