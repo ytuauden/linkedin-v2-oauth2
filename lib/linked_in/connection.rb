@@ -1,4 +1,14 @@
 module LinkedIn
+  class DoNotEscapeEncoder
+    def self.encode(params)
+      buffer = ''
+      params.each do |key, value|
+        buffer << "#{key}=#{value}&"
+      end
+      buffer.chop
+    end
+  end
+
   # Used to perform requests against LinkedIn's API.
   class Connection < ::Faraday::Connection
 
@@ -15,7 +25,7 @@ module LinkedIn
 
       # We need to use the FlatParamsEncoder so we can pass multiple of
       # the same param to certain endpoints (like the search API).
-      self.options.params_encoder = ::Faraday::FlatParamsEncoder
+      self.options.params_encoder = LinkedIn::DoNotEscapeEncoder
 
       self.response :linkedin_raise_error
     end

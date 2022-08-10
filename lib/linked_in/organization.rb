@@ -12,9 +12,7 @@ module LinkedIn
     private ##############################################################
 
     def organization_path(options)
-      path = "/organizations/#{options.delete(:organization_id)}"
-      fields = options.delete(:fields)
-      path + '?projection=(' + format_fields_list(fields) + ')' unless fields.blank?
+      "/organizations/#{options.delete(:organization_id)}"
     end
   end
 end
