@@ -67,6 +67,17 @@ module LinkedIn
       return Mash.from_json(response.body)
     end
 
+    def upload_asset(upload_url, file_path, file_content_type)
+      headers = @connection.headers
+      headers['Content-Type'] = file_content_type
+      upload_connection = LinkedIn::Connection.new(@connection.url_prefix, headers: headers)
+      upload_connection.options.params_encoder = ::Faraday::FlatParamsEncoder
+
+      response = upload_connection.put(upload_url.gsub(@connection.url_prefix.to_s, ''), File.binread(file_path))
+
+      return Mash.from_json(response.body)
+    end
+
     def deprecated
       LinkedIn::Deprecated.new(LinkedIn::ErrorMessages.deprecated)
     end
