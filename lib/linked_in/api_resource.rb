@@ -73,6 +73,14 @@ module LinkedIn
 
     private ##############################################################
 
+    def set_restli_protocol_version_header(options)
+      if options.key?(:headers)
+        options[:headers]['X-Restli-Protocol-Version'] = '2.0.0'
+      else
+        options[:headers] = { 'X-Restli-Protocol-Version' => '2.0.0' }
+      end
+    end
+
     def paginate(path, options)
       paginate_params = options.delete(:paginate)
       if paginate_params && paginate_params.count > 0

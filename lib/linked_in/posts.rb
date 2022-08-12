@@ -8,6 +8,7 @@ module LinkedIn
       path = posts_by_organization_path
       options['authors'] = "List(#{CGI.escape(options.delete(:organization_urn))})"
       options['fields'] = options.delete(:fields).join(',')
+      set_restli_protocol_version_header(options)
       get(path, options)
     end
 
@@ -19,6 +20,7 @@ module LinkedIn
     def post(options = {})
       path = post_path(options)
       options['projection'] = "(#{options.delete(:fields).join(',')})"
+      set_restli_protocol_version_header(options)
       get(path, options)
     end
 

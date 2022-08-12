@@ -6,6 +6,7 @@ module LinkedIn
 
     def videos(options = {})
       path = videos_path(options)
+      set_restli_protocol_version_header(options)
       get(path, options)
     end
 
