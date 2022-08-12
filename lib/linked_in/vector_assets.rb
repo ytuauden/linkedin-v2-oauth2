@@ -6,6 +6,10 @@ module LinkedIn
 
     def register_upload(request, options = {})
       path = register_upload_path(options)
+      options = set_restli_protocol_version_header(options)
+      headers = options.delete(:headers)
+      headers['Connection'] = 'keep-alive'
+      headers['Content-Type'] = 'application/json'
       post(path, request, options.delete(:headers))
     end
 

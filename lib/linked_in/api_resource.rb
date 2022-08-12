@@ -79,6 +79,8 @@ module LinkedIn
       else
         options[:headers] = { 'X-Restli-Protocol-Version' => '2.0.0' }
       end
+
+      options
     end
 
     def paginate(path, options)

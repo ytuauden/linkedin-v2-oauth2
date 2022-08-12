@@ -11,12 +11,16 @@ module LinkedIn
 
     def create_comment_on_comment(comment, options)
       path = comments_on_comment_path(options)
-      post(path, comment, options.delete(:headers))
+      headers = options.delete(:headers)
+      headers['Connection'] = 'keep-alive'
+      headers['Content-Type'] = 'application/json'
+      post(path, comment, headers)
     end
 
     def comments_on_post(options = {})
       path = comments_on_post_path(options)
       options['fields'] = options.delete(:fields).join(',')
+      options = set_restli_protocol_version_header(options)
       get(path, options)
     end
 
