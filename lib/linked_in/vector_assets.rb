@@ -5,7 +5,7 @@ module LinkedIn
   class VectorAssets < APIResource
 
     def register_upload(options = {})
-      path = register_upload_path(options)
+      path = register_upload_path
       options = set_restli_protocol_version_header(options)
       headers = options.delete(:headers)
       headers['Connection'] = 'keep-alive'
@@ -21,7 +21,7 @@ module LinkedIn
 
     private ##############################################################
 
-    def register_upload_path(_options)
+    def register_upload_path
       '/assets'
     end
 
