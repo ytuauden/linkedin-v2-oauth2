@@ -55,6 +55,16 @@ module LinkedIn
       return Mash.from_json(response.body)
     end
 
+    def post_with_params(path=nil, body=nil, params=nil, headers=nil)
+      response = @connection.post(prepend_prefix(path), body, headers) do |r|
+        params.each do |key, value|
+          r.params[key] = value
+        end
+      end
+
+      return Mash.from_json(response.body)
+    end
+
     def put(path=nil, body=nil, headers=nil, &block)
       response = @connection.put(prepend_prefix(path), body, headers, &block)
 

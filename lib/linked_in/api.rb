@@ -33,6 +33,8 @@ module LinkedIn
 
     def_delegators :@profile, :current_user
 
+    def_delegators :@reactions, :create_reaction_on_comment
+
     def_delegators :@social_metadata, :social_metadata,
                                       :batch_social_metadata
 
@@ -49,6 +51,7 @@ module LinkedIn
       @organization = LinkedIn::Organization.new(@connection)
       @posts = LinkedIn::Posts.new(@connection)
       @profile = LinkedIn::Profile.new(@connection)
+      @reactions = LinkedIn::Reactions.new(@connection)
       @social_metadata = LinkedIn::SocialMetadata.new(@connection)
       @vector_assets = LinkedIn::VectorAssets.new(@connection)
       @videos = LinkedIn::Videos.new(@connection)
