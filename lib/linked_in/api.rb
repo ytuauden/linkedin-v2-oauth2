@@ -33,7 +33,8 @@ module LinkedIn
 
     def_delegators :@profile, :current_user
 
-    def_delegators :@reactions, :create_reaction_on_comment
+    def_delegators :@reactions, :create_reaction,
+                                :delete_reaction
 
     def_delegators :@social_metadata, :social_metadata,
                                       :batch_social_metadata
