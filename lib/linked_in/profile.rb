@@ -6,15 +6,14 @@ module LinkedIn
 
     def current_user(options = {})
       path = profile_path(options)
+      options['projection'] = "(#{options.delete(:fields).join(',')})" if options[:fields].present?
       get(path)
     end
 
     private ##############################################################
 
     def profile_path(options)
-      path = '/me'
-      fields = options.delete(:fields)
-      path + '?projection=(' + format_fields_list(fields) + ')' unless fields.blank?
+      '/me'
     end
   end
 end

@@ -12,15 +12,7 @@ module LinkedIn
     private ##############################################################
 
     def images_path(options)
-      urn = options.delete(:urn)
-      path = '/images'
-      if urn.is_a?(Array)
-        path += '?ids='
-
-        build_url_with_urn_list(path, urn)
-      else
-        path += "/#{CGI.escape(urn)}"
-      end
+      "/images/#{CGI.escape(options.delete(:urn))}"
     end
   end
 end

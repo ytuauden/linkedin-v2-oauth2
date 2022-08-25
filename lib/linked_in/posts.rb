@@ -7,19 +7,14 @@ module LinkedIn
     def posts_by_organization(options = {})
       path = posts_by_organization_path
       options['authors'] = "List(#{CGI.escape(options.delete(:organization_urn))})"
-      options['fields'] = options.delete(:fields).join(',')
+      options['fields'] = options.delete(:fields).join(',') if options[:fields].present?
       options = set_restli_protocol_version_header(options)
-      get(path, options)
-    end
-
-    def posts(options = {})
-      path = posts_path(options)
       get(path, options)
     end
 
     def post(options = {})
       path = post_path(options)
-      options['projection'] = "(#{options.delete(:fields).join(',')})"
+      options['projection'] = "(#{options.delete(:fields).join(',')})" if options[:fields].present?
       options = set_restli_protocol_version_header(options)
       get(path, options)
     end
@@ -28,13 +23,6 @@ module LinkedIn
 
     def posts_by_organization_path
       '/ugcPosts'
-    end
-
-    def posts_path(options)
-      urn = options.delete(:urn)
-      path = "/posts?ids="
-
-      build_url_with_urn_list(path, urn)
     end
 
     def post_path(options)

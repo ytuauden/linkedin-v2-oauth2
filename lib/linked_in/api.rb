@@ -28,8 +28,6 @@ module LinkedIn
     def_delegators :@organization, :organization
 
     def_delegators :@posts, :posts_by_organization,
-                            :organization_posts,
-                            :posts,
                             :post
 
     def_delegators :@profile, :current_user

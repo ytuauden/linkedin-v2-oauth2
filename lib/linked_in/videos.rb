@@ -13,15 +13,7 @@ module LinkedIn
     private ##############################################################
 
     def videos_path(options)
-      urn = options.delete(:urn)
-      path = '/videos'
-      if urn.is_a?(Array)
-        path += '?ids='
-
-        build_url_with_urn_list(path, urn)
-      else
-        path += "/#{CGI.escape(urn)}"
-      end
+      "/videos/#{CGI.escape(options.delete(:urn))}"
     end
   end
 end

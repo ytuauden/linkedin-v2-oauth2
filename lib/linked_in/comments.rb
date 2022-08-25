@@ -19,14 +19,14 @@ module LinkedIn
 
     def comments_on_post(options = {})
       path = comments_on_post_path(options)
-      options['fields'] = options.delete(:fields).join(',')
+      options['fields'] = options.delete(:fields).join(',') if options[:fields].present?
       options = set_restli_protocol_version_header(options)
       get(path, options)
     end
 
     def comments_on_comment(options = {})
       path = comments_on_comment_path(options)
-      options['fields'] = options.delete(:fields).join(',')
+      options['fields'] = options.delete(:fields).join(',') if options[:fields].present?
       get(path, options)
     end
 

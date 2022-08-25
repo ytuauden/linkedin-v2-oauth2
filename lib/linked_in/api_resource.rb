@@ -104,28 +104,6 @@ module LinkedIn
       options
     end
 
-    def paginate(path, options)
-      paginate_params = options.delete(:paginate)
-      if paginate_params && paginate_params.count > 0
-        path += "&start=#{paginate_params[:start]}&count=#{paginate_params[:count]}"
-      else
-        path += "&start=0&count=20"
-      end
-    end
-
-    def format_fields_list(fields)
-      fields.join(',').delete(' ')
-    end
-
-    def build_url_with_urn_list(path, urns)
-      path += 'List('
-      urns.uniq.each do |urn|
-        path += CGI.escape(urn)
-        path += ',' unless urns.last.eql?(urn)
-      end
-      path += ')'
-    end
-
     def prepend_prefix(path)
       return @connection.path_prefix + path
     end
