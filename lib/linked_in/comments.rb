@@ -35,7 +35,12 @@ module LinkedIn
       get(path, options)
     end
 
-    def delete_comment(options= {})
+    def edit_comment(request, options = {})
+      path = edit_comment_path(options)
+      post_with_params(path, request, { actor: options.delete(:organization_urn) }, { 'Content-Type' => 'application/json' })
+    end
+
+    def delete_comment(options = {})
       path = delete_comment_path(options)
       delete(path, options)
     end
@@ -54,8 +59,12 @@ module LinkedIn
       "/socialActions/#{CGI.escape(options.delete(:entity_urn))}/comments/#{CGI.escape(options.delete(:id))}"
     end
 
-    def delete_comment_path(options)
+    def edit_comment_path(options)
       "/socialActions/#{options.delete(:entity_urn)}/comments/#{options.delete(:id)}"
+    end
+
+    def delete_comment_path(options)
+      edit_comment_path(options)
     end
   end
 end

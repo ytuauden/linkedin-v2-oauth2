@@ -20,6 +20,7 @@ module LinkedIn
                                :comments_on_post,
                                :comments_on_comment,
                                :comment,
+                               :edit_comment,
                                :delete_comment
 
     def_delegators :@images, :images
