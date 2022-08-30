@@ -26,6 +26,9 @@ require "linked_in/access_token"
 # Endpoints inherit from APIResource
 require "linked_in/api_resource"
 
+# Logger
+require "linked_in/logger"
+
 # All of the endpoints
 require "linked_in/comments"
 require "linked_in/images"

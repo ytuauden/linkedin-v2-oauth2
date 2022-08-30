@@ -27,7 +27,7 @@ module LinkedIn
       # the same param to certain endpoints (like the search API).
       self.options.params_encoder = LinkedIn::DoNotEscapeEncoder
 
-      #self.response :logger, nil, { headers: true, bodies: true }
+      self.response :logger, LinkedIn.logger
 
       self.response :linkedin_raise_error
     end
