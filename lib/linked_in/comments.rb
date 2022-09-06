@@ -11,10 +11,7 @@ module LinkedIn
 
     def create_comment_on_comment(comment, options)
       path = comments_on_comment_path(options)
-      headers = options.delete(:headers)
-      headers['Connection'] = 'keep-alive'
-      headers['Content-Type'] = 'application/json'
-      post(path, comment, headers)
+      post(path, comment, { 'Connection' => 'keep-alive', 'Content-Type' => 'application/json' })
     end
 
     def comments_on_post(options = {})
