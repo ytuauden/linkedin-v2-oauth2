@@ -27,6 +27,8 @@ module LinkedIn
 
     def_delegators :@organization, :organization
 
+    def_delegators :@organization_acl, :organization_acl
+
     def_delegators :@posts, :posts_by_organization,
                             :post
 
@@ -49,6 +51,7 @@ module LinkedIn
       @comments = LinkedIn::Comments.new(@connection)
       @images = LinkedIn::Images.new(@connection)
       @organization = LinkedIn::Organization.new(@connection)
+      @organization_acl = LinkedIn::OrganizationAcl.new(@connection)
       @posts = LinkedIn::Posts.new(@connection)
       @profile = LinkedIn::Profile.new(@connection)
       @reactions = LinkedIn::Reactions.new(@connection)
