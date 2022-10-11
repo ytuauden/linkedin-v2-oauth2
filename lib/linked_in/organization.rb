@@ -9,10 +9,21 @@ module LinkedIn
       get(path, options)
     end
 
+    def organization_profile(options = {})
+      path = organization_profile_path(options)
+      options['projection'] = "(#{options.delete(:fields).join(',')})" if options[:fields].present?
+      options = set_restli_protocol_version_header(options)
+      get(path, options)
+    end
+
     private ##############################################################
 
     def organization_path(options)
       "/organizations/#{options.delete(:organization_id)}"
+    end
+
+    def organization_profile_path(options)
+      '/organizationsLookup'
     end
   end
 end
