@@ -10,8 +10,8 @@ module LinkedIn
       get(path)
     end
 
-    def user_profile(options = {})
-      path = user_profile_path(options)
+    def people(options = {})
+      path = user_profile_path
       options['projection'] = "(#{options.delete(:fields).join(',')})" if options[:fields].present?
       options = set_restli_protocol_version_header(options)
       get(path, options)
@@ -23,7 +23,7 @@ module LinkedIn
       '/me'
     end
 
-    def user_profile_path(options)
+    def user_profile_path
       '/people'
     end
   end

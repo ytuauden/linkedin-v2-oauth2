@@ -26,7 +26,7 @@ module LinkedIn
     def_delegators :@images, :images
 
     def_delegators :@organization, :organization,
-                                   :organization_profile
+                                   :organizations_lookup
 
     def_delegators :@organization_acl, :organization_acl
 
@@ -34,7 +34,7 @@ module LinkedIn
                             :post
 
     def_delegators :@profile, :current_user,
-                              :user_profile
+                              :people
 
     def_delegators :@reactions, :create_reaction,
                                 :delete_reaction
