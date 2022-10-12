@@ -25,14 +25,16 @@ module LinkedIn
 
     def_delegators :@images, :images
 
-    def_delegators :@organization, :organization
+    def_delegators :@organization, :organization,
+                                   :organizations_lookup
 
     def_delegators :@organization_acl, :organization_acl
 
     def_delegators :@posts, :posts_by_organization,
                             :post
 
-    def_delegators :@profile, :current_user
+    def_delegators :@profile, :current_user,
+                              :people
 
     def_delegators :@reactions, :create_reaction,
                                 :delete_reaction
