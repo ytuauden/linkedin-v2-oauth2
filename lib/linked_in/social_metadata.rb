@@ -12,7 +12,7 @@ module LinkedIn
 
     def batch_social_metadata(options = {})
       path = social_metadata_path
-      options['ids'] = "List(#{CGI.escape(options.delete(:entity_urn).join(','))})"
+      options['ids'] = "List(#{options.delete(:entity_urn).map { |urn| CGI.escape(urn) }.join(',')})"
       options = set_restli_protocol_version_header(options)
       get(path, options)
     end
