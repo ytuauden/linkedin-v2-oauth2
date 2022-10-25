@@ -12,10 +12,15 @@ module LinkedIn
       get(path, options)
     end
 
-    def post(options = {})
-      path = post_path(options)
+    def create_post(options = {})
+      path = create_post_path(options)
       options['projection'] = "(#{options.delete(:fields).join(',')})" if options[:fields].present?
       options = set_restli_protocol_version_header(options)
+      get(path, options)
+    end
+
+    def post(options = {})
+      path = post_path(options)
       get(path, options)
     end
 
@@ -25,8 +30,12 @@ module LinkedIn
       '/ugcPosts'
     end
 
-    def post_path(options)
+    def create_post_path(options)
       "/ugcPosts/#{CGI.escape(options.delete(:urn))}"
+    end
+
+    def post_path(options)
+      "/posts/#{CGI.escape(options.delete(:post_urn))}"
     end
   end
 end
