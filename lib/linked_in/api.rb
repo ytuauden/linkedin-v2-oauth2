@@ -31,8 +31,8 @@ module LinkedIn
     def_delegators :@organization_acl, :organization_acl
 
     def_delegators :@posts, :posts_by_organization,
-                            :create_post,
-                            :post
+                            :post,
+                            :post_article
 
     def_delegators :@profile, :current_user,
                               :people
