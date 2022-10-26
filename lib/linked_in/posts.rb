@@ -19,8 +19,8 @@ module LinkedIn
       get(path, options)
     end
 
-    def post_article(options = {})
-      path = post_article_path(options)
+    def single_post(options = {})
+      path = single_post_path(options)
       get(path, options)
     end
 
@@ -34,7 +34,7 @@ module LinkedIn
       "/ugcPosts/#{CGI.escape(options.delete(:urn))}"
     end
 
-    def post_article_path(options)
+    def single_post_path(options)
       "/posts/#{CGI.escape(options.delete(:post_urn))}"
     end
   end

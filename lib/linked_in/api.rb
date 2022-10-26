@@ -32,7 +32,7 @@ module LinkedIn
 
     def_delegators :@posts, :posts_by_organization,
                             :post,
-                            :post_article
+                            :single_post
 
     def_delegators :@profile, :current_user,
                               :people
