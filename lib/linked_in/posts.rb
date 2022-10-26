@@ -19,6 +19,11 @@ module LinkedIn
       get(path, options)
     end
 
+    def single_post(options = {})
+      path = single_post_path(options)
+      get(path, options)
+    end
+
     private ##############################################################
 
     def posts_by_organization_path
@@ -27,6 +32,10 @@ module LinkedIn
 
     def post_path(options)
       "/ugcPosts/#{CGI.escape(options.delete(:urn))}"
+    end
+
+    def single_post_path(options)
+      "/posts/#{CGI.escape(options.delete(:post_urn))}"
     end
   end
 end
