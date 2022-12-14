@@ -15,7 +15,7 @@ module LinkedIn
       end
     end
 
-    def upload_image(options = {})
+    def upload_image_asset(options = {})
       upload_asset(options.delete(:upload_url), options.delete(:file_path), options.delete(:file_content_type))
     end
 

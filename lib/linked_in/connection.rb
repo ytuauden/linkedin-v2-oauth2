@@ -1,5 +1,13 @@
 module LinkedIn
   class DoNotEscapeEncoder
+    def self.decode(params)
+      params.split('&').reduce({}) do |memo, param|
+        key, val = param.split('=')
+        memo[key] = val
+        memo
+      end
+    end
+
     def self.encode(params)
       buffer = ''
       params.each do |key, value|
