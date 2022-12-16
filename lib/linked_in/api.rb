@@ -71,7 +71,7 @@ module LinkedIn
       # https://docs.microsoft.com/fr-fr/linkedin/shared/authentication/client-credentials-flow?context=linkedin%2Fcontext&view=li-lms-2022-07#step-3-make-api-requests
       {
         'Connection' => 'Keep-Alive',
-        'LinkedIn-Version' => '202206',
+        'LinkedIn-Version' => LinkedIn.config.api_version,
         'Authorization' => "Bearer #{@access_token.token}"
       }
     end
