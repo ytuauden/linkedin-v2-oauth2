@@ -6,6 +6,8 @@ module LinkedIn
 
     def images(options = {})
       path = images_path(options)
+      options['ids'] = "List(#{options.delete(:images_urn).map { |urn| CGI.escape(urn) }.join(',')})"
+      options = set_restli_protocol_version_header(options)
       get(path, options)
     end
 
@@ -23,7 +25,7 @@ module LinkedIn
     private ##############################################################
 
     def images_path(options)
-      "/images/#{CGI.escape(options.delete(:urn))}"
+      '/images'
     end
 
     def upload_image_path(options)
