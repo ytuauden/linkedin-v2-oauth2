@@ -23,7 +23,8 @@ module LinkedIn
                                :edit_comment,
                                :delete_comment
 
-    def_delegators :@images, :images
+    def_delegators :@images, :images,
+                             :upload_image
 
     def_delegators :@organization, :organization,
                                    :organizations_lookup
@@ -43,7 +44,7 @@ module LinkedIn
                                       :batch_social_metadata
 
     def_delegators :@vector_assets, :register_upload,
-                                    :upload_image
+                                    :upload_image_asset
 
     def_delegators :@videos, :videos
 

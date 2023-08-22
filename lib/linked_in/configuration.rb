@@ -33,7 +33,7 @@ module LinkedIn
 
     def initialize
       @api = "https://api.linkedin.com/rest"
-      @api_version = "202206"
+      @api_version = "202307"
       @site = "https://www.linkedin.com"
       @token_url = "/oauth/v2/accessToken"
       @authorize_url = "/uas/oauth2/authorization"
