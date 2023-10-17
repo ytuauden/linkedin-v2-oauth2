@@ -23,7 +23,8 @@ module LinkedIn
                                :edit_comment,
                                :delete_comment
 
-    def_delegators :@images, :images,
+    def_delegators :@images, :image,
+                             :images,
                              :upload_image
 
     def_delegators :@organization, :organization,
