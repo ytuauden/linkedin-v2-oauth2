@@ -12,7 +12,6 @@ module LinkedIn
 
     def post(options = {})
       path = post_path(options)
-      options['projection'] = "(#{options.delete(:fields).join(',')})" if options[:fields].present?
       get(path, options)
     end
 
