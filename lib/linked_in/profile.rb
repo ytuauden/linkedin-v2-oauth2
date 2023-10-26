@@ -6,11 +6,13 @@ module LinkedIn
 
     def current_user(options = {})
       path = profile_path(options)
+      options['projection'] = "(#{options.delete(:fields).join(',')})" if options[:fields].present?
       get(path)
     end
 
     def people(options = {})
       path = people_path
+      options['projection'] = "(#{options.delete(:fields).join(',')})" if options[:fields].present?
       options = set_restli_protocol_version_header(options)
       get(path, options)
     end
