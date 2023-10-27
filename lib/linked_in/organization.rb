@@ -11,7 +11,6 @@ module LinkedIn
 
     def organizations_lookup(options = {})
       path = organizations_lookup_path
-      options['projection'] = "(#{options.delete(:fields).join(',')})" if options[:fields].present?
       options = set_restli_protocol_version_header(options)
       get(path, options)
     end
