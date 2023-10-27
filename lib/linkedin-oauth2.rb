@@ -31,6 +31,7 @@ require "linked_in/logger"
 
 # All of the endpoints
 require "linked_in/comments"
+require "linked_in/documents"
 require "linked_in/images"
 require "linked_in/organization"
 require "linked_in/organization_acl"

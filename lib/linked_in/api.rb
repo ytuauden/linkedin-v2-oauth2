@@ -23,6 +23,8 @@ module LinkedIn
                                :edit_comment,
                                :delete_comment
 
+    def_delegators :@documents, :document
+
     def_delegators :@images, :image,
                              :images,
                              :upload_image
@@ -54,6 +56,7 @@ module LinkedIn
     def initialize_endpoints
       @comments = LinkedIn::Comments.new(@connection)
       @images = LinkedIn::Images.new(@connection)
+      @documents = LinkedIn::Documents.new(@connection)
       @organization = LinkedIn::Organization.new(@connection)
       @organization_acl = LinkedIn::OrganizationAcl.new(@connection)
       @posts = LinkedIn::Posts.new(@connection)
