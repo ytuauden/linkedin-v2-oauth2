@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   # To support native JSON. Same requirements as Rails.
   gem.required_ruby_version = '>= 1.9.3'
 
-  gem.add_dependency "oauth2",  "~> 1.0"
+  gem.add_dependency "oauth2", ">= 1.0", "< 3"
   gem.add_dependency "hashie",  "~> 3.2"
   gem.add_dependency "faraday", "~> 1.0"
 
